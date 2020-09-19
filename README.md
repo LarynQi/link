@@ -3,6 +3,7 @@ HackMIT 2020
 
 # Development Build
 
+0. Make sure you have Node.js, then run `npm install --save-dev react-dev-utils`, then `npm install`
 1. Clone this repo
 2. `cd` into the repo
 3. `cd frontend`
