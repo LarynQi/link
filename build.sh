@@ -15,6 +15,7 @@ then
 	npm run build
 	cd ../backend
 	python3 main.py
+	cd ..
 else
 	echo "must run from link directory"
 fi
