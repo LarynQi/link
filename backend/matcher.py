@@ -13,6 +13,8 @@ def match(jobs, candidates):
 
         - The above loop is repeated each successive day until there are no offers rejected. At that point, each candidate has a job offer in hand (i.e. on a string);
         and on this day, each candidate accepts their offered job (i.e. the job offer she has in hand) and the algorithm terminates.
+    
+    Source: https://www.eecs70.org/static/notes/n4.pdf
     """
 
     # Day Loop

@@ -13,5 +13,7 @@ HackMIT 2020
 
 ### References
 
-* [Tutorial](https://www.youtube.com/watch?v=YW8VG_U-m48)
+* Setting up Flask + React [Tutorial](https://www.youtube.com/watch?v=YW8VG_U-m48)
   * Watch the beginning of this tutorial if you are missing dependencies
+* ReactJS [Tutorial](https://reactjs.org/tutorial/tutorial.html)
+  * See [this repo](https://github.com/LarynQi/tic-tac-toe) for the completed tutorial
