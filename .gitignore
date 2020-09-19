@@ -147,5 +147,5 @@ cython_debug/
 temp.html
 
 # React build
-/flask-backend/static/
-/flask-backend/templates/
+/backend/static/
+/backend/templates/

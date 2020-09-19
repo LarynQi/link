@@ -5,9 +5,9 @@ HackMIT 2020
 
 1. Clone this repo
 2. `cd` into the repo
-3. `cd react-frontend`
+3. `cd frontend`
 4. `npm run build`
-5. `cd ../flask-backend`
+5. `cd ../backend`
 6. `python3 main.py`
 7. Visit [localhost](http://127.0.0.1:5000/) to see the build!
 
