@@ -14,3 +14,4 @@ HackMIT 2020
 ### References
 
 * [Tutorial](https://www.youtube.com/watch?v=YW8VG_U-m48)
+  * Watch the beginning of this tutorial if you are missing dependencies
