@@ -1,6 +1,6 @@
 import flask
 
-app = flask.FLask("__main__", static_folder="./react-frontend/build/static", template_folder="./react-frontend/build")
+app = flask.Flask("__main__")
 
 @app.route("/")
 def my_index():
