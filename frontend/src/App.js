@@ -10,7 +10,17 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <p>My Token = {window.token}</p>
+        {/* <button onclick={window.generate()}>Generate</button> */}
+        {/* <button onclick="window.location.href='/generate'">Generate</button> */}
+        <form action="/generate">
+          <input type="submit" value="Generate" />
+        </form>
+        <p>Generation = {window.token}</p>
+        {/* <div className="text">{window.token}</div> */}
+        {/* <div>
+          {window.token[0]}
+        </div> */}
+
         <div class="prompt"><input
             autocomplete="off"
             type="text"

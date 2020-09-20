@@ -76,7 +76,7 @@ def match(jobs, candidates):
 
 def run():
     if ran:
-        return "Already Generated"
+        clean()
     jobs, candidates = process("./data/mentors.csv")
     matches = match(jobs, candidates)
     # for mentee, mentor in matches.items():
@@ -91,19 +91,27 @@ def run():
                 result += " RANDOMIZED"
                 n_randomized += 1
             print(result)
-            final += result + "\n"
+            # final += result + "\n"
+            final += result
+
         else:
             s = f"Mentee: {mentee.name}, UNMATCHED"
             print(s)
-            final += s + "\n"
+            # final += s + "\n"
+            final += s
             n_unmatched += 1
     print()
     s = f"SUMMARY:\nRandomized: {n_randomized}/{len(matches)}, Unmatched: {n_unmatched}/{len(matches) + n_unmatched}"
     print(s)
-    final += "\n" + s + "\n"
+    # final += "\n" + s + "\n"
+    final += f"SUMMARY:Randomized: {n_randomized}/{len(matches)}, Unmatched: {n_unmatched}/{len(matches) + n_unmatched}"
     return final
 
-
+def clean():
+    if not ran:
+        return "Already Clean"
+    Candidate.names = []
+    
 
 if __name__ == "__main__":
     run()
