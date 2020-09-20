@@ -1,25 +1,20 @@
 import pandas as pd
 from utils import *
-ran = False
+
 def process(data):
     """
     data: path to file
     """
-    global ran
-    ran = True
     popularity = {}
     df = pd.read_csv(data).fillna("")
     cols = ["Preference #1", "Preference #2", "Preference #3", "Preference #4", "Preference #5"]
-    # print(len(df))
-    jobs = [] #mentees
-    candidates = []
+    jobs = [] # mentees
+    candidates = [] # mentors
     for r in range(len(df)):
-        # Job([], df["Your Name"][r])
         mentee_name = df["Your Name"][r]
         j = Job(df["Your Name"][r], [])
         for i in range(len(cols)):
             mentor_name = df[cols[i]][r]
-            # names = [c.name for c in candidates]
             if mentor_name not in Candidate.names:
                 c = Candidate(mentor_name, [])
                 Candidate.names.append(mentor_name)
@@ -34,15 +29,27 @@ def process(data):
     # print(popularity)
 
     demand = {}
+    # configurable
+    demand_factor = 1 / (len(cols) - 1)
+    demand_func = lambda popularity, i: popularity * (1 / (1 + (i * demand_factor)))
+    # demand_factor = 1 / len(cols)
+    # demand_func = lambda popularity, i: popularity * (1 / (1 + (i + 1) * demand_factor))
     for j in jobs:
         total = 0
-        for c in j.preferences:
-            total += popularity[c]
+        for i in range(len(j.preferences)):
+            c = j.preferences[i]
+            total += demand_func(popularity[c], i)
         demand[j] = total
     demand = {k: v for k, v in sorted(demand.items(), key=lambda entry: entry[1], reverse=True)}
+    # seen = set()
+    # for k in demand:
+    #     if demand[k] in seen:
+    #         print("duplicate")
+    #     seen.add(demand[k])
+    # print(demand)
+    # exit(1)
     # print(demand)
     # print([c.name for c in candidates])
-    # exit(1)
     
     for j in jobs:
         mentors = set(candidates)
@@ -61,22 +68,32 @@ def match(jobs, candidates):
     matched = []
     unmatched = []
     for j in jobs:
-        for i in range(len(j.preferences)):
+        for i in range(5):
             preferred = j.preferences[i]
             if preferred not in matched:
-                j.randomized = i > 4
+                # j.randomized = i > 4
+                j.randomized = False
                 matched.append(preferred)
                 matches[j] = preferred
                 break
         if j not in matches.keys():
             unmatched.append(j)
+            j.randomized = True
+    for j in unmatched:
+        for i in range(5, len(j.preferences)):
+            preferred = j.preferences[i]
+            if preferred not in matched:
+                matched.append(preferred)
+                matches[j] = preferred
+                break
+        if j not in matches.keys():
+            j.unmatched = True
 
     return matches
 
 
 def run():
-    if ran:
-        clean()
+    clean()
     jobs, candidates = process("./data/mentors.csv")
     matches = match(jobs, candidates)
     # for mentee, mentor in matches.items():
@@ -86,32 +103,42 @@ def run():
     final = ""
     for mentee in jobs:
         if mentee in matches:
-            result = f"Mentee: {mentee.name}, Mentor: {matches[mentee].name}"
+            result = f"Mentee: {mentee.name}, Mentor: {matches[mentee].name} "
             if mentee.randomized:
-                result += " RANDOMIZED"
+                result += "RANDOMIZED "
                 n_randomized += 1
             print(result)
-            # final += result + "\n"
             final += result
-
         else:
-            s = f"Mentee: {mentee.name}, UNMATCHED"
+            s = f"Mentee: {mentee.name}, UNMATCHED "
             print(s)
-            # final += s + "\n"
             final += s
             n_unmatched += 1
     print()
     s = f"SUMMARY:\nRandomized: {n_randomized}/{len(matches)}, Unmatched: {n_unmatched}/{len(matches) + n_unmatched}"
     print(s)
-    # final += "\n" + s + "\n"
-    final += f"SUMMARY:Randomized: {n_randomized}/{len(matches)}, Unmatched: {n_unmatched}/{len(matches) + n_unmatched}"
+    final += f"SUMMARY: Randomized: {n_randomized}/{len(matches)}, Unmatched: {n_unmatched}/{len(matches) + n_unmatched}"
     return final
 
 def clean():
-    if not ran:
-        return "Already Clean"
     Candidate.names = []
     
+def run_trials(n):
+    n_randomized = 0
+    n_unmatched = 0
+    for _ in range(n):
+        clean()
+        jobs, candidates = process("./data/mentors.csv")
+        matches = match(jobs, candidates)
+
+        for mentee in jobs:
+            if mentee in matches:
+                if mentee.randomized:
+                    n_randomized += 1
+            else:
+                n_unmatched += 1
+    print(f"Average stats over {n} trials:\nRandomized: {n_randomized / n}/{len(matches)}")
 
 if __name__ == "__main__":
     run()
+    # run_trials(50)

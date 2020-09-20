@@ -18,3 +18,7 @@ HackMIT 2020
   * Watch the beginning of this tutorial if you are missing dependencies
 * ReactJS [Tutorial](https://reactjs.org/tutorial/tutorial.html)
   * See [this repo](https://github.com/LarynQi/tic-tac-toe) for the completed tutorial
+
+### TODO
+
+* [Deploy](https://blog.miguelgrinberg.com/post/how-to-deploy-a-react--flask-project)
