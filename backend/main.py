@@ -9,9 +9,6 @@ def my_index():
 
 @app.route("/generate")
 def generate():
-    result = run()
-    # print(f"RESULT: {result}")
-
-    return flask.render_template("index.html", token=result)
+    return flask.render_template("index.html", token=run())
 
 app.run(debug=True)

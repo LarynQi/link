@@ -40,3 +40,7 @@
 .prompt {
   align-items: center;
 }
+
+p {
+  white-space:pre-wrap;
+}
