@@ -3,14 +3,14 @@ HackMIT 2020
 
 # Development Build
 
-0. Make sure you have Node.js, then run `npm install --save-dev react-dev-utils`, then `npm install`
-1. Clone this repo
-2. `cd` into the repo
-3. `cd frontend`
-4. `npm run build`
-5. `cd ../backend`
-6. `python3 main.py`
-7. Visit [localhost](http://127.0.0.1:5000/) to see the build!
+1. Make sure you have [Node.js](https://nodejs.org/en/download/), then run `npm install --save-dev react-dev-utils`, then `npm install`
+2. Clone this repo
+3. `cd` into the repo
+4. `cd frontend`
+5. `npm run build`
+6. `cd ../backend`
+7. `python3 main.py`
+8. Visit [localhost](http://127.0.0.1:5000/) to see the build!
 
 ### References
 

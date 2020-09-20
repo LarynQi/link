@@ -1,6 +1,7 @@
 class Entity():
     
-    def __init__(self, preferences):
+    def __init__(self, name, preferences):
+        self.name = name
         self.preferences = preferences
     
     def remove(self, other):
@@ -10,9 +11,11 @@ class Entity():
 
 class Candidate(Entity):
 
-    def __init__(self, preferences):
+    names = []
+
+    def __init__(self, name, preferences):
         # https://www.programiz.com/python-programming/methods/built-in/super
-        super().__init__(preferences)
+        super().__init__(name, preferences)
         self.string = []
         
 
