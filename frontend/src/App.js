@@ -109,7 +109,12 @@ function App() {
   //   element,
   //   document.getElementById('generate')
   // );
-
+  const data = [["Janani Balaji","Joy Jung","Tiffany Wu","Niki Shakouri","Kristie Diep","Tasnima Naoshin"],
+    ["Alvin Xu","William Arnold","Grace Luo","Manav Rathod","Trevor Wu","Ashley Chu"],
+    ["Helena Greebe","Grace Luo","Ashley Chu","Joyce Chen","Tiffany Wu","Manav Rathod"],
+    ["Samantha Huang","Kristie Diep","Sara Susanto","Wenny Miao","Adarsh Anil Kumar","Massimiliano de Sa"]]
+  var generate = React.createElement(Generate, {data: data})
+  // generate.readInput(data);
   return (
     <div className="App">
       <header className="App-header">
@@ -130,7 +135,12 @@ function App() {
         {/* <div>
           {window.token[0]}
         </div> */}
-        <Generate />
+        <Generate data={data}/>
+        <form method="POST">
+          Data: <input type="text" name="datastuff"></input>
+          <input type="submit" value="Submit"></input>
+        </form>
+        {/* {React.render(generate)} */}
         <div class="prompt">
           <input autocomplete="off" type="text" />
         </div>

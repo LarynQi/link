@@ -1,5 +1,6 @@
 import flask
 from oneSided import *
+from convert import convert
 
 app = flask.Flask("__main__")
 
@@ -9,9 +10,11 @@ def my_index():
 
 # https://hackersandslackers.com/flask-routes/
 # https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response
-@app.route("/api/v1/generate", methods=['GET'])
+@app.route("/api/v1/generate", methods=['GET', 'POST'])
 def generate():
     # headers = {"Content-Type": "application/json"}
+    print(flask.request.args.get('data'))
+    convert("test", flask.request.args.get('data'))
     print("REQUEST RECEIVED.")
     # response = flask.make_response(
     #     'Test worked!',
