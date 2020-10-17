@@ -3,6 +3,7 @@ import React, { useRef, useState} from 'react';
 
 import logo from './logo.svg';
 import './App.css';
+import Generate from './Generate'
 import EntityForm from "./EntityForm.react";
 import Copy from './Copy';
 
@@ -85,6 +86,12 @@ function App() {
   //     }
   //   }
   // }
+  // const element = <Generate />;
+  // ReactDOM.render(
+  //   element,
+  //   document.getElementById('generate')
+  // );
+
   return (
     <div className="App">
       <header className="App-header">
@@ -102,7 +109,8 @@ function App() {
         {/* <div>
           {window.token[0]}
         </div> */}
-
+        <Generate />
+        {/* <div id="genereate"></div> */}
         <div class="prompt"><input
             autocomplete="off"
             type="text"
