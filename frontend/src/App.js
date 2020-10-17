@@ -4,7 +4,6 @@ import React, { useRef, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import EntityForm from "./EntityForm.react";
-import { useState } from "react";
 import Copy from './Copy';
 
 function App() {
@@ -156,7 +155,7 @@ function App() {
             things in my second group 
           </form>
           <button onClick={handleSubmit}>Begin</button>
-          <EntityForm></EntityForm>
+          {/* <EntityForm></EntityForm> */}
       </div>
       {/* <div className={formDisplay ? "list" : null}>
         Enter names of entities in the first group
