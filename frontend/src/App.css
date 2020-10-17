@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -43,4 +43,97 @@
 
 p {
   white-space:pre-wrap;
+} */
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #24305e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #a8d0e6;
+}
+
+.App-link {
+  /* color: #61dafb; */
+  /* color: rgb(230, 159, 8); */
+  color: #17252a;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+button {
+  appearance: none;
+  outline: 0;
+  background-color: #f76c6c;
+  border: 0;
+  padding: 10px 15px;
+  color: #24305e;
+  border-radius: 3px;
+  width: 100px;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  font-size: 18px;
+}
+
+input {
+  appearance: none;
+  outline: 0;
+  background-color: #f8e9a1;
+  border: 0;
+  padding: 10px 10px;
+  color: #24305e;
+  border-radius: 3px;
+  font-size: 18px;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
+input.generate {
+  appearance: none;
+  outline: 0;
+  background-color: black;
+  border: 0;
+  padding: 10px 10px;
+  color: #24305e;
+  border-radius: 3px;
+  font-size: 18px;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
+.prompt {
+  align-items: center;
+}
+
+p {
+  white-space: pre-wrap;
+  font-family: "PT Sans";
+  /* font-family: Impact, Charcoal, sans-serif; */
+
+  /* font-family: "Georgia", sans-serif; */
 }
