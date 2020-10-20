@@ -1,9 +1,12 @@
 import flask
 from oneSided import *
 from convert import convert
+import os
+# https://github.com/neelsomani/react-flask-heroku
+# app = flask.Flask("__main__")
+app = flask.Flask(__name__)
 
-app = flask.Flask("__main__")
-
+# print(os.getcwd())
 @app.route("/")
 def my_index():
     return flask.render_template("index.html", token="Hello Flask + React", generate=run)
@@ -13,8 +16,10 @@ def my_index():
 @app.route("/api/v1/generate", methods=['GET', 'POST'])
 def generate():
     # headers = {"Content-Type": "application/json"}
-    print(flask.request.args.get('data'))
-    convert("test", flask.request.args.get('data'))
+    # print("RECEIVED", flask.request.args.get('data'))
+    print("RECEIVED", [flask.request.form[x] for x in flask.request.form])
+
+    # convert("test", flask.request.args.get('data'))
     print("REQUEST RECEIVED.")
     # response = flask.make_response(
     #     'Test worked!',
