@@ -1,6 +1,10 @@
 import flask
-from backend.oneSided import *
-from backend.convert import convert
+try:
+    from backend.oneSided import *
+    from backend.convert import convert
+except:
+    from oneSided import *
+    from convert import *
 import os
 # https://github.com/neelsomani/react-flask-heroku
 # app = flask.Flask("__main__")

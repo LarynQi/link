@@ -1,4 +1,7 @@
-from backend.matcher import *
+try: 
+    from backend.matcher import *
+except:
+    from matcher import *
 import pandas as pd
 import csv
 
