@@ -7,6 +7,7 @@ except:
         from oneSided import *
         from convert import *
     except:
+        # https://stackoverflow.com/questions/46250019/python-flask-heroku-cannot-import-module/46250086
         from .oneSided import *
         from .convert import *
 import os
