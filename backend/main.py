@@ -35,4 +35,5 @@ def generate():
 # def generate():
 #     return flask.render_template("index.html", token=run())
 
-app.run(debug=True)
+if name == "__main__":
+    app.run(debug=True)
