@@ -11,9 +11,10 @@ link=${PWD:$STRLENGTH - 4:STRLENGTH}
 
 if [ link == "link" ]
 then
-	cd frontend
+	# cd frontend
 	npm run build
-	cd ../backend
+	# cd ../backend
+	cd backend
 	python3 main.py
 	cd ..
 else
