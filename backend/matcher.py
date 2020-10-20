@@ -1,7 +1,10 @@
 try:
     from backend.utils import *
 except:
-    from utils import *
+    try:
+        from utils import *
+    except:
+        from .utils import *
 def match(jobs, candidates):
     """
     The Propose-and-Reject Algorithm:

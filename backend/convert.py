@@ -1,7 +1,10 @@
 try: 
     from backend.matcher import *
 except:
-    from matcher import *
+    try:
+        from matcher import *
+    except:
+        from .matcher import *
 import pandas as pd
 import csv
 

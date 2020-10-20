@@ -2,7 +2,10 @@ import pandas as pd
 try:
     from backend.utils import *
 except:
-    from utils import *
+    try:
+        from utils import *
+    except:
+        from .utils import *
 def process(data):
     """
     data: path to file
