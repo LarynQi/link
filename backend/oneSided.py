@@ -1,5 +1,5 @@
 import pandas as pd
-from utils import *
+from backend.utils import *
 
 def process(data):
     """
@@ -94,7 +94,8 @@ def match(jobs, candidates):
 
 def run():
     clean()
-    jobs, candidates = process("./data/mentors.csv")
+    # jobs, candidates = process("./data/mentors.csv")
+    jobs, candidates = process("~/Desktop/cs/hackmit/link/backend/data/mentors.csv")
     matches = match(jobs, candidates)
     # for mentee, mentor in matches.items():
     #     print(f"Mentee: {mentee.name}, Mentor: {mentor.name}")

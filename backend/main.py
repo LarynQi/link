@@ -1,6 +1,6 @@
 import flask
-from oneSided import *
-from convert import convert
+from backend.oneSided import *
+from backend.convert import convert
 import os
 # https://github.com/neelsomani/react-flask-heroku
 # app = flask.Flask("__main__")
@@ -35,5 +35,5 @@ def generate():
 # def generate():
 #     return flask.render_template("index.html", token=run())
 
-if name == "__main__":
+if __name__ == "__main__":
     app.run(debug=True)
