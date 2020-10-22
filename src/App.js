@@ -21,9 +21,11 @@
 import React, { useRef, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import Generate from './Generate'
+import Generate from "./Generate";
 import EntityForm from "./EntityForm.react";
 import Copy from "./Copy";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import NameInput from "./NameInput.react";
 
 function App() {
   // const [groupANum, setGroupANum] = useState("");
@@ -36,6 +38,7 @@ function App() {
     groupA: "",
     groupB: ""
   });
+
   function handleTitleChange(event) {
     const value = event.target.value;
     setState({
@@ -68,33 +71,33 @@ function App() {
     event.preventDefault();
     console.log(event.target.value);
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     };
     fetch("/api/v1/generate", requestOptions)
-    .then(res => res.text())
-    // .then(text => console.log(text))
-    // .then(res => {
-    //     this.setState({
-    //         items: res
-    //     })
-    // })
-    // .then(res => res.json())
-    .then(
-    (result) => {
-        this.setState({
-        isLoaded: true,
-        items: result
-        });
-    },
-    (error) => {
-        this.setState({
-        isLoaded: true,
-        error
-        });
-    }
-    )
+      .then((res) => res.text())
+      // .then(text => console.log(text))
+      // .then(res => {
+      //     this.setState({
+      //         items: res
+      //     })
+      // })
+      // .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
   }
   // return (
   //     <div>
@@ -142,90 +145,74 @@ function App() {
   //   document.getElementById('generate')
   // );
 
+  const data = [
+    [
+      "Janani Balaji",
+      "Joy Jung",
+      "Tiffany Wu",
+      "Niki Shakouri",
+      "Kristie Diep",
+      "Tasnima Naoshin"
+    ],
+    [
+      "Alvin Xu",
+      "William Arnold",
+      "Grace Luo",
+      "Manav Rathod",
+      "Trevor Wu",
+      "Ashley Chu"
+    ],
+    [
+      "Helena Greebe",
+      "Grace Luo",
+      "Ashley Chu",
+      "Joyce Chen",
+      "Tiffany Wu",
+      "Manav Rathod"
+    ],
+    [
+      "Samantha Huang",
+      "Kristie Diep",
+      "Sara Susanto",
+      "Wenny Miao",
+      "Adarsh Anil Kumar",
+      "Massimiliano de Sa"
+    ]
+  ];
 
-  const data = [["Janani Balaji","Joy Jung","Tiffany Wu","Niki Shakouri","Kristie Diep","Tasnima Naoshin"],
-    ["Alvin Xu","William Arnold","Grace Luo","Manav Rathod","Trevor Wu","Ashley Chu"],
-    ["Helena Greebe","Grace Luo","Ashley Chu","Joyce Chen","Tiffany Wu","Manav Rathod"],
-    ["Samantha Huang","Kristie Diep","Sara Susanto","Wenny Miao","Adarsh Anil Kumar","Massimiliano de Sa"]]
-  var generate = React.createElement(Generate, {data: data})
-  // generate.readInput(data);
-  return (
-    <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p>{/* Edit <code>src/App.js</code> and save to reload. */}</p>
-        <p>
-          {" "}
-          Please enter the number of jobs and candidates you would like to
-          match. [TEST] {" "}
-        </p>
-        {/* <button onclick={window.generate()}>Generate</button> */}
-        {/* <button onclick="window.location.href='/generate'">Generate</button> */}
-        <form action="/generate">
-          <input class="generate" type="submit" value="Generate" />
-        </form>
-        <p>Generation = {window.token}</p>
-        {/* <div className="text">{window.token}</div> */}
-        {/* <div>
-          {window.token[0]}
-        </div> */}
-        <Generate data={data}/>
-        {/* <form action="/api/v1/generate" method="POST"> */}
-        {/* https://stackoverflow.com/questions/23427384/get-form-data-in-reactjs */}
-        <form onSubmit={generateResult}>
-          Data 1: <input type="text" name="in1"></input>
-          Data 2: <input type="text" name="in2"></input>
-          Data 3: <input type="text" name="in3"></input>
-          <input type="submit" value="Submit"></input>
-        </form>
-        {/* {React.render(generate)} */}
-        <div class="prompt">
-          <input autocomplete="off" type="text" />
-        </div>
-        <div>
-          {document.queryCommandSupported("copy") && (
-            <div>
-              <button onClick={copyToClipboard}>Copy</button>
-              {copySuccess}
-            </div>
-          )}
-          <form>
-            <textarea ref={textAreaRef} value={window.token} />
+  function Welcome() {
+    return (
+      <div className="App">
+        {/* <header> Header </header> */}
+        <body className="App-body">
+          <form onSubmit={handleSubmit}>
+            I want to pair
+            <input
+              autoComplete="off"
+              type="text"
+              name="groupA"
+              value={state.groupA}
+              onChange={handleTitleChange}
+            />
+            things in my first group with
+            <input
+              autoComplete="off"
+              type="text"
+              name="groupB"
+              value={state.groupB}
+              onChange={handleTitleChange}
+            />
+            things in my second group
           </form>
-        </div>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <div>
-        <form onSubmit={handleSubmit}>
-          I want to pair
-          <input
-            autoComplete="off"
-            type="text"
-            name="groupA"
-            value={state.groupA}
-            onChange={handleTitleChange}
-          />
-          things in my first group with
-          <input
-            autoComplete="off"
-            type="text"
-            name="groupB"
-            value={state.groupB}
-            onChange={handleTitleChange}
-          />
-          things in my second group
-        </form>
-        <button onClick={handleSubmit}>Begin</button>
-        {/* <EntityForm></EntityForm> */}
-      </div>
-      {/* <div className={formDisplay ? "list" : null}>
+          <button onClick={handleSubmit}>Begin</button>
+
+          {/* <br /> */}
+          {/* <div className="centered"> */}
+          {/* <br /> */}
+          {/* </div> */}
+          {/* <EntityForm></EntityForm> */}
+        </body>
+        {/* <div className={formDisplay ? "list" : null}>
         Enter names of entities in the first group
         {Object.keys(groupANames).map((key) => {
           const name = groupANames[key];
@@ -236,7 +223,33 @@ function App() {
           );
         })}
       </div> */}
-    </div>
+      </div>
+    );
+  }
+
+  function EnterName() {
+    return (
+      // <body className="App-body">
+      // <NameInput num={this.groupANum}></NameInput>;
+      // </body>
+      <h>HEAD</h>
+    );
+  }
+  var generate = React.createElement(Generate, { data: data });
+  // generate.readInput(data);
+  return (
+    <main>
+      <Switch>
+        <Route path="/" component={Welcome}>
+          <Welcome />
+        </Route>
+        <Route path="/enterName" component={EnterName}>
+          <EnterName />
+        </Route>
+        {/* <Route path="/enterPreference" component={EnterPreference} /> */}
+        <Route component={Error} />
+      </Switch>
+    </main>
   );
 }
 
