@@ -64,6 +64,38 @@ function App() {
     setCopySuccess("Copied!");
   }
 
+  function generateResult(event) {
+    event.preventDefault();
+    console.log(event.target.value);
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    };
+    fetch("/api/v1/generate", requestOptions)
+    .then(res => res.text())
+    // .then(text => console.log(text))
+    // .then(res => {
+    //     this.setState({
+    //         items: res
+    //     })
+    // })
+    // .then(res => res.json())
+    .then(
+    (result) => {
+        this.setState({
+        isLoaded: true,
+        items: result
+        });
+    },
+    (error) => {
+        this.setState({
+        isLoaded: true,
+        error
+        });
+    }
+    )
+  }
   // return (
   //     <div>
   //         {
@@ -110,6 +142,13 @@ function App() {
   //   document.getElementById('generate')
   // );
 
+
+  const data = [["Janani Balaji","Joy Jung","Tiffany Wu","Niki Shakouri","Kristie Diep","Tasnima Naoshin"],
+    ["Alvin Xu","William Arnold","Grace Luo","Manav Rathod","Trevor Wu","Ashley Chu"],
+    ["Helena Greebe","Grace Luo","Ashley Chu","Joyce Chen","Tiffany Wu","Manav Rathod"],
+    ["Samantha Huang","Kristie Diep","Sara Susanto","Wenny Miao","Adarsh Anil Kumar","Massimiliano de Sa"]]
+  var generate = React.createElement(Generate, {data: data})
+  // generate.readInput(data);
   return (
     <div className="App">
       <header className="App-header">
@@ -130,7 +169,16 @@ function App() {
         {/* <div>
           {window.token[0]}
         </div> */}
-        <Generate />
+        <Generate data={data}/>
+        {/* <form action="/api/v1/generate" method="POST"> */}
+        {/* https://stackoverflow.com/questions/23427384/get-form-data-in-reactjs */}
+        <form onSubmit={generateResult}>
+          Data 1: <input type="text" name="in1"></input>
+          Data 2: <input type="text" name="in2"></input>
+          Data 3: <input type="text" name="in3"></input>
+          <input type="submit" value="Submit"></input>
+        </form>
+        {/* {React.render(generate)} */}
         <div class="prompt">
           <input autocomplete="off" type="text" />
         </div>

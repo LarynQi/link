@@ -1,6 +1,11 @@
 import pandas as pd
-from utils import *
-
+try:
+    from backend.utils import *
+except:
+    try:
+        from utils import *
+    except:
+        from .utils import *
 def process(data):
     """
     data: path to file
@@ -94,7 +99,12 @@ def match(jobs, candidates):
 
 def run():
     clean()
-    jobs, candidates = process("./data/mentors.csv")
+    try:
+        jobs, candidates = process("./data/mentors.csv")
+    except:
+        # print('here')
+        # heroku local
+        jobs, candidates = process("./backend/data/mentors.csv")
     matches = match(jobs, candidates)
     # for mentee, mentor in matches.items():
     #     print(f"Mentee: {mentee.name}, Mentor: {mentor.name}")

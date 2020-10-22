@@ -1,0 +1,6 @@
+{
+    "root": "./backend/static/react",
+    "routes": {
+        "/**": "index.html"
+    }
+}

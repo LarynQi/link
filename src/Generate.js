@@ -2,12 +2,13 @@ import React from 'react';
 import './App.css';
 // https://reactjs.org/docs/faq-ajax.html
 class Generate extends React.Component {
-  constructor() {
+  constructor(data) {
       super();
       this.state = {
         error: null,
         isLoaded: false,
-        items: ""
+        items: "",
+        data: data
       };
 
       this.handleClick = this.handleClick.bind(this)
@@ -39,9 +40,27 @@ class Generate extends React.Component {
 //         )
 //   }
 
+readInput(input) {
+    this.setState({data: input});
+}
+
 //   https://reactjs.org/docs/handling-events.html
   handleClick() {
-    fetch("/api/v1/generate")
+    const { error, isLoaded, items, data } = this.state;
+    var params = "";
+    console.log(data);
+    // for (let i = 0; i < data.length; i += 1) {
+    //     params = params.concat("data=", String(data[i]), "&");
+    // }
+    // console.log(params);
+    // params = params.substr(0, params.length - 1);
+    // console.log("/api/v1/generate?" + params);
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+    fetch("/api/v1/generate", requestOptions)
         .then(res => res.text())
         // .then(text => console.log(text))
         // .then(res => {
@@ -67,7 +86,7 @@ class Generate extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, items, data } = this.state;
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
