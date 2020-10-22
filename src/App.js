@@ -157,7 +157,7 @@ function App() {
         <p>
           {" "}
           Please enter the number of jobs and candidates you would like to
-          match. [TEST] {" "}
+          match. {" "}
         </p>
         {/* <button onclick={window.generate()}>Generate</button> */}
         {/* <button onclick="window.location.href='/generate'">Generate</button> */}
